@@ -1,0 +1,41 @@
+install raspberry pitft image
+sudo raspi-config
+sudo nano /etc/inittab
+	- remove line: T0:23:respown:/sbin/getty -L ttyAMA0 115200 vt100
+sudo nano /boot/cmdline.txt
+	- remove configo abour serial console on TTYAMA0
+Esto debería eliminar los errores de tipo SysRq que se ven en el dmesg
+
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get install wicd-curses
+sudo apt-get install python-imaging
+sudo apt-get install python-netifaces
+sudo apt-get install python-dev
+sudo apt-get install python-pip
+sudo pip install wiringpi2
+
+
+sudo apt-get install python-smbus python-imaging
+https://github.com/adafruit/Adafruit_Python_LED_Backpack/archive/master.zip
+unzip master.zip
+cd Adafruit_Python_LED_Backpack-master
+sudo python setup.py install
+
+
+sudo apt-get install gpsd gpsd-clients python-gps
+sudo dpkg-reconfigure gpsd
+sudo nano /etc/modules
+	i2c-bcm2708
+	i2c-dev
+sudo nano /etc/modprobe.d/raspi-blacklist.conf
+	#blacklist i2c-bcm2708
+	Exit and save the file.
+sudo apt-get install python-smbus i2c-tools
+
+
+
+
+sudo cp onboardComp /etc/init.d/
+sudo chmod ugo+x onboardComp
+update-rc.d onboardComp defaults
